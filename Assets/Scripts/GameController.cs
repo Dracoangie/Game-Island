@@ -16,11 +16,15 @@ public class GameController : MonoBehaviour
     public CardManager cardAdder;
     public GameObject currentPlayer;
     public GameObject player2;
-    bool PlayerDefence = false;
+
+    int  PlayerDefence = 0;
+
+    Animator playerAnim;
 
     void Start()
     {
         InvokeRepeating("startCombat", 2.0f, 2.0f);
+        playerAnim = player.GetComponent<Animator>();
     }
 
     
@@ -29,11 +33,11 @@ public class GameController : MonoBehaviour
         
     }
 
-  public void startCombat()
+    public void startCombat()
     {
-        Debug.Log(PlayerDefence);
+        playerAnim.SetBool("IsAttacking", true);
         player.GetComponent<Stats>().attack(currentEnemy.GetComponent<Stats>());
-        if(!PlayerDefence)
+        if(PlayerDefence <= 0)
         {
             currentEnemy.GetComponent<Stats>().attack(player.GetComponent<Stats>());
 
@@ -46,13 +50,17 @@ public class GameController : MonoBehaviour
             }
         }
         else 
-            PlayerDefence = false;
+            PlayerDefence --;
+
+        
+        Invoke("setAttcBool", 0.3f);
     }
 
     public void CardCombat(Card card)
     {
         switch(card.cardType.ToString()){
             case "Attack":
+                playerAnim.SetBool("IsAttacking", true);
                 player.GetComponent<Stats>().attack(card.value);
 
                 if (currentEnemy.GetComponent<Stats>().health <= 0)
@@ -61,22 +69,34 @@ public class GameController : MonoBehaviour
                     Invoke("MovePlayer", 2.0f);
                     Invoke("SpawnNewEnemy", 4.0f);
                 }
+                Invoke("setAttcBool", 0.3f);
                 break;
             case "Defense":
-                PlayerDefence = true;
+                PlayerDefence ++;
                 break;
             case "Heal":
+                playerAnim.SetBool("isHealing", true);
                 player.GetComponent<Stats>().heal(card.value);
+                Invoke("setHealBool", 0.3f);
                 break;
             default:
                 break;
         }
     }
 
+    void setAttcBool()
+    {
+        playerAnim.SetBool("IsAttacking", false);
+    }
+
+    void setHealBool()
+    {
+        playerAnim.SetBool("isHealing", false);
+    }
+
     void MovePlayer()
     {
-        Debug.Log("Moving the character to the right");
-       Rigidbody2D rb2d = currentPlayer.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb2d = currentPlayer.GetComponent<Rigidbody2D>();
        
         if (rb2d != null)
         {
@@ -97,14 +117,12 @@ public class GameController : MonoBehaviour
     }
 
     void DestroyPlayer(){
-        Debug.Log("Destroying the player");
         Destroy(currentPlayer);
     }
 
     
     IEnumerator MoveAndHandleNext()
     {
-        Debug.Log("Waiting to move");
        yield return new WaitForSeconds(5.5f);
        StartCoroutine("MoverPersonaje2");
     }

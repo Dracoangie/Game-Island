@@ -184,7 +184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.729, y: 138.432}
+  m_AnchoredPosition: {x: 36.2, y: 95.7}
   m_SizeDelta: {x: 156.542, y: 29.135}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1708048580232396215
@@ -239,7 +239,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1961528615761712477}
   - component: {fileID: 8549321047451497784}
-  - component: {fileID: 1586556204834385046}
   - component: {fileID: 139692770425293030}
   m_Layer: 5
   m_Name: Card
@@ -279,36 +278,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4602048365041647593}
   m_CullTransparentMesh: 1
---- !u!114 &1586556204834385046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4602048365041647593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d79a70dfb3666974da1b64494f83daa3, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &139692770425293030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,6 +294,7 @@ MonoBehaviour:
   cardName: {fileID: 8329436453993181286}
   action: {fileID: 8800176351885580467}
   cardArt: {fileID: 6909368535521722394}
+  gameController: {fileID: 0}
 --- !u!1 &7879279611004058134
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +329,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.052, y: -34.433}
+  m_AnchoredPosition: {x: 20.2, y: 41.4}
   m_SizeDelta: {x: 135.897, y: 98.867}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &574598324079961986
