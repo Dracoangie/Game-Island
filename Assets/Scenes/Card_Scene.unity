@@ -292,7 +292,7 @@ MonoBehaviour:
   - {fileID: 0}
   cardPrefab: {fileID: 4602048365041647593, guid: 5a1933bdf29f6c24e8fb260080557f10, type: 3}
   cardContainer: {fileID: 376381277}
-  startCards: 6
+  startCards: 18
   gameController: {fileID: 201294666}
 --- !u!4 &103650459
 Transform:
@@ -455,7 +455,7 @@ MonoBehaviour:
   nextEnemyDamageDifference: 1
   player: {fileID: 1170423441}
   spawnPoint: {fileID: 184452202}
-  camera: {fileID: 1118911143}
+  gamecamera: {fileID: 0}
   cardAdder: {fileID: 0}
 --- !u!4 &201294667
 Transform:
