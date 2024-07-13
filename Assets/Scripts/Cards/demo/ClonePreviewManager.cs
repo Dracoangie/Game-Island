@@ -8,7 +8,7 @@ namespace demo {
      * Offers a preview of a card when hovering over it by cloning the original card and placing it on top of the original.
      * Allows setting the global preview position and scale.
      */
-    public class ClonePreviewManager : MonoBehaviour, CardPreviewManager {
+    /*public class ClonePreviewManager : MonoBehaviour, CardPreviewManager {
         
         [SerializeField]
         private float verticalPosition;
@@ -50,7 +50,7 @@ namespace demo {
             previews.Add(card, clone.transform);
         }
 
-        private static void StripCloneComponents(GameObject clone) {
+        /*private static void StripCloneComponents(GameObject clone) {
             var cloneWrapper = clone.GetComponent<CardWrapper>();
             if (cloneWrapper != null) {
                 Destroy(cloneWrapper);
@@ -62,8 +62,8 @@ namespace demo {
             }
         }
 
-        public void OnCardPreviewEnded(CardWrapper card) {
+        /*public void OnCardPreviewEnded(CardWrapper card) {
             previews[card].gameObject.SetActive(false);
         }
-    }
+    }*/
 }

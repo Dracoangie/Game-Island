@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Stats : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class Stats : MonoBehaviour
     public int health;
     public int damage;
     public Stats enemyStats;
-    public TextMeshPro enemyLiveBar;
+    public Text enemyLiveBar;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,14 @@ public class Stats : MonoBehaviour
     }
     public void attack(Stats enemyStats){
         enemyStats.recieveDamage(this.damage);
+    }
+
+    public void attack(int AttDamage){
+        enemyStats.recieveDamage(AttDamage);
+    }
+
+    public void heal(int heal){
+        health += heal;
     }
 
     public void recieveDamage(int damage){

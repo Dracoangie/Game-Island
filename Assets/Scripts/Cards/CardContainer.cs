@@ -226,7 +226,8 @@ public class CardContainer : MonoBehaviour {
     public void DestroyCard(CardWrapper card) {
         cards.Remove(card);
         eventsConfig.OnCardDestroy?.Invoke(new CardDestroy(card));
-        CardController cardCont = card.GetComponent<CardController>();
+        CardCode cardCont = card.GetComponent<CardCode>();
+        cardCont.Action();
         Destroy(card.gameObject);
     }
 

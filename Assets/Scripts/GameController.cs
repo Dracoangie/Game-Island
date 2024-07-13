@@ -12,7 +12,10 @@ public class GameController : MonoBehaviour
     public int nextEnemyDamageDifference=1;
     public GameObject player;
     public Transform spawnPoint;
-    public GameObject camera;
+    public GameObject gamecamera;
+    public CardManager cardAdder;
+
+    bool PlayerDefence = false;
 
     void Start()
     {
@@ -27,14 +30,44 @@ public class GameController : MonoBehaviour
 
   public void startCombat()
     {
+        Debug.Log(PlayerDefence);
         player.GetComponent<Stats>().attack(currentEnemy.GetComponent<Stats>());
-        currentEnemy.GetComponent<Stats>().attack(player.GetComponent<Stats>());
-
-        if (currentEnemy.GetComponent<Stats>().health <= 0)
+        if(!PlayerDefence)
         {
-            CancelInvoke("startCombat");
-            Invoke("MoveCharacter", 2.0f);
-            Invoke("SpawnNewEnemy", 4.0f);
+            currentEnemy.GetComponent<Stats>().attack(player.GetComponent<Stats>());
+
+            if (currentEnemy.GetComponent<Stats>().health <= 0)
+            {
+                CancelInvoke("startCombat");
+                Invoke("MoveCharacter", 2.0f);
+                Invoke("SpawnNewEnemy", 4.0f);
+            }
+        }
+        else 
+            PlayerDefence = false;
+    }
+
+    public void CardCombat(Card card)
+    {
+        switch(card.cardType.ToString()){
+            case "Attack":
+                player.GetComponent<Stats>().attack(card.value);
+
+                if (currentEnemy.GetComponent<Stats>().health <= 0)
+                {
+                    CancelInvoke("startCombat");
+                    Invoke("MoveCharacter", 2.0f);
+                    Invoke("SpawnNewEnemy", 4.0f);
+                }
+                break;
+            case "Defense":
+                PlayerDefence = true;
+                break;
+            case "Heal":
+                player.GetComponent<Stats>().heal(card.value);
+                break;
+            default:
+                break;
         }
     }
 
@@ -89,12 +122,12 @@ public class GameController : MonoBehaviour
     }
 
    void moveCamera()
-{
-    Transform cameraTransform = camera.GetComponent<Transform>();  // Obtener el componente Transform de la cámara
-    
-    
-    cameraTransform.position = new Vector3(10,0,0);
-}
+    {
+        Transform cameraTransform = gamecamera.GetComponent<Transform>();  // Obtener el componente Transform de la cï¿½mara
+
+
+        cameraTransform.position = new Vector3(10,0,0);
+    }
 
 }
 

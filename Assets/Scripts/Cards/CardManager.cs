@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardManager : MonoBehaviour
 {
     public Card[] cards;
+    public Image[] cardevolutions;
     public GameObject cardPrefab;
     public Transform cardContainer;
+    public int startCards = 3;
+
+    public GameController gameController;
 
     void Start()
     {
-        AddCard(2);
+        AddCard(startCards);
     }
 
     public void AddCard(int numCards)
@@ -19,13 +24,21 @@ public class CardManager : MonoBehaviour
         {
             GameObject newCard = Instantiate(cardPrefab, cardContainer);
 
-            newCard.GetComponent<CardController>().card = cards[Random.Range(0, cards.Length)];
-            newCard.GetComponent<CardController>().setCard();
+            newCard.GetComponent<CardCode>().card = cards[Random.Range(0, cards.Length)];
+            newCard.GetComponent<CardCode>().setCard();
+
+            newCard.GetComponent<CardCode>().gameController = gameController;
 
             if (cardContainer != null)
             {
                 newCard.transform.SetParent(cardContainer, false);
             }
         }
+    }
+
+    public void changeScene()
+    {
+        AddCard(2);
+
     }
 }
