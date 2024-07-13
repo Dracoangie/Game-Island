@@ -16,11 +16,15 @@ public class GameController : MonoBehaviour
     public CardManager cardAdder;
     public GameObject currentPlayer;
     public GameObject player2;
+
     int  PlayerDefence = 0;
+
+    Animator playerAnim;
 
     void Start()
     {
         InvokeRepeating("startCombat", 2.0f, 2.0f);
+        playerAnim = player.GetComponent<Animator>();
     }
 
     
@@ -31,7 +35,7 @@ public class GameController : MonoBehaviour
 
     public void startCombat()
     {
-        Debug.Log(PlayerDefence);
+        playerAnim.SetBool("IsAttacking", true);
         player.GetComponent<Stats>().attack(currentEnemy.GetComponent<Stats>());
         if(PlayerDefence <= 0)
         {
@@ -47,12 +51,16 @@ public class GameController : MonoBehaviour
         }
         else 
             PlayerDefence --;
+
+        
+        Invoke("setAttcBool", 0.3f);
     }
 
     public void CardCombat(Card card)
     {
         switch(card.cardType.ToString()){
             case "Attack":
+                playerAnim.SetBool("IsAttacking", true);
                 player.GetComponent<Stats>().attack(card.value);
 
                 if (currentEnemy.GetComponent<Stats>().health <= 0)
@@ -61,16 +69,29 @@ public class GameController : MonoBehaviour
                     Invoke("MovePlayer", 2.0f);
                     Invoke("SpawnNewEnemy", 4.0f);
                 }
+                Invoke("setAttcBool", 0.3f);
                 break;
             case "Defense":
                 PlayerDefence ++;
                 break;
             case "Heal":
+                playerAnim.SetBool("isHealing", true);
                 player.GetComponent<Stats>().heal(card.value);
+                Invoke("setHealBool", 0.3f);
                 break;
             default:
                 break;
         }
+    }
+
+    void setAttcBool()
+    {
+        playerAnim.SetBool("IsAttacking", false);
+    }
+
+    void setHealBool()
+    {
+        playerAnim.SetBool("isHealing", false);
     }
 
     void MovePlayer()
