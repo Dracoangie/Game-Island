@@ -8,6 +8,8 @@ public class Stats : MonoBehaviour
     public int health;
     public int damage;
     public Stats enemyStats;
+    public TextMeshPro enemyLiveBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,10 @@ public class Stats : MonoBehaviour
         
     }
     public void attack(Stats enemyStats){
-        enemyStats.health-=this.damage;
+        enemyStats.recieveDamage(this.damage);
+    }
+
+    public void recieveDamage(int damage){
+        this.health-=damage;
     }
 }
