@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour
     public CardManager cardAdder;
     public GameObject currentPlayer;
     public GameObject player2;
-    bool PlayerDefence = false;
+    int  PlayerDefence = 0;
 
     void Start()
     {
@@ -29,11 +29,11 @@ public class GameController : MonoBehaviour
         
     }
 
-  public void startCombat()
+    public void startCombat()
     {
         Debug.Log(PlayerDefence);
         player.GetComponent<Stats>().attack(currentEnemy.GetComponent<Stats>());
-        if(!PlayerDefence)
+        if(PlayerDefence <= 0)
         {
             currentEnemy.GetComponent<Stats>().attack(player.GetComponent<Stats>());
 
@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
             }
         }
         else 
-            PlayerDefence = false;
+            PlayerDefence --;
     }
 
     public void CardCombat(Card card)
@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
                 }
                 break;
             case "Defense":
-                PlayerDefence = true;
+                PlayerDefence ++;
                 break;
             case "Heal":
                 player.GetComponent<Stats>().heal(card.value);
@@ -75,8 +75,7 @@ public class GameController : MonoBehaviour
 
     void MovePlayer()
     {
-        Debug.Log("Moving the character to the right");
-       Rigidbody2D rb2d = currentPlayer.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb2d = currentPlayer.GetComponent<Rigidbody2D>();
        
         if (rb2d != null)
         {
@@ -97,14 +96,12 @@ public class GameController : MonoBehaviour
     }
 
     void DestroyPlayer(){
-        Debug.Log("Destroying the player");
         Destroy(currentPlayer);
     }
 
     
     IEnumerator MoveAndHandleNext()
     {
-        Debug.Log("Waiting to move");
        yield return new WaitForSeconds(5.5f);
        StartCoroutine("MoverPersonaje2");
     }

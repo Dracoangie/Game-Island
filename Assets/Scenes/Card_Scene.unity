@@ -282,17 +282,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 11400000, guid: 2fceb1a7141d9e1459d48e6c5cd1d15c, type: 2}
-  - {fileID: 11400000, guid: 004daf543d108db41880af67d9ab2527, type: 2}
   - {fileID: 11400000, guid: fa0eee5ac910a54449c2f4ccda34ee92, type: 2}
-  - {fileID: 11400000, guid: 8e0eeb0a5bf18cc47b3f20129477f865, type: 2}
   cardevolutions:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   cardPrefab: {fileID: 4602048365041647593, guid: 5a1933bdf29f6c24e8fb260080557f10, type: 3}
   cardContainer: {fileID: 376381277}
-  startCards: 18
+  startCards: 4
   gameController: {fileID: 201294666}
 --- !u!4 &103650459
 Transform:
@@ -457,6 +454,8 @@ MonoBehaviour:
   spawnPoint: {fileID: 184452202}
   gamecamera: {fileID: 0}
   cardAdder: {fileID: 0}
+  currentPlayer: {fileID: 0}
+  player2: {fileID: 0}
 --- !u!4 &201294667
 Transform:
   m_ObjectHideFlags: 0
