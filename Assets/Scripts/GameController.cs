@@ -14,7 +14,8 @@ public class GameController : MonoBehaviour
     public Transform spawnPoint;
     public GameObject gamecamera;
     public CardManager cardAdder;
-
+    public GameObject currentPlayer;
+    public GameObject player2;
     bool PlayerDefence = false;
 
     void Start()
@@ -39,7 +40,8 @@ public class GameController : MonoBehaviour
             if (currentEnemy.GetComponent<Stats>().health <= 0)
             {
                 CancelInvoke("startCombat");
-                Invoke("MoveCharacter", 2.0f);
+                Destroy(currentEnemy);
+                Invoke("MovePlayer", 2.0f);
                 Invoke("SpawnNewEnemy", 4.0f);
             }
         }
@@ -56,7 +58,7 @@ public class GameController : MonoBehaviour
                 if (currentEnemy.GetComponent<Stats>().health <= 0)
                 {
                     CancelInvoke("startCombat");
-                    Invoke("MoveCharacter", 2.0f);
+                    Invoke("MovePlayer", 2.0f);
                     Invoke("SpawnNewEnemy", 4.0f);
                 }
                 break;
@@ -71,10 +73,10 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void MoveCharacter()
+    void MovePlayer()
     {
         Debug.Log("Moving the character to the right");
-       Rigidbody2D rb2d = player.GetComponent<Rigidbody2D>();
+       Rigidbody2D rb2d = currentPlayer.GetComponent<Rigidbody2D>();
        
         if (rb2d != null)
         {
@@ -84,16 +86,27 @@ public class GameController : MonoBehaviour
         else
         {
             
-            player.transform.Translate(Vector3.right * 2.0f * Time.deltaTime);
+            currentPlayer.transform.Translate(Vector3.right * 2.0f * Time.deltaTime);
 
         }
         Invoke("DestroyPlayer",2.0f);
+        Invoke("changeCurrentPlayer",3.0f);
         Invoke("moveCamera",2.0f);
+        StartCoroutine("MoveAndHandleNext");
+
     }
 
     void DestroyPlayer(){
         Debug.Log("Destroying the player");
-        Destroy(player);
+        Destroy(currentPlayer);
+    }
+
+    
+    IEnumerator MoveAndHandleNext()
+    {
+        Debug.Log("Waiting to move");
+       yield return new WaitForSeconds(5.5f);
+       StartCoroutine("MoverPersonaje2");
     }
 
     void SpawnNewEnemy()
@@ -122,11 +135,29 @@ public class GameController : MonoBehaviour
     }
 
    void moveCamera()
-    {
-        Transform cameraTransform = gamecamera.GetComponent<Transform>();  // Obtener el componente Transform de la c�mara
+{
+    Transform cameraTransform = gamecamera.GetComponent<Transform>();  
+    cameraTransform.position = new Vector3(10,0,-10);
+}
 
+    IEnumerator MoverPersonaje2(){
+     
+     float moveDuration = 1.5f;
+     float elapsedTime = 0f;
 
-        cameraTransform.position = new Vector3(10,0,0);
+        while (elapsedTime < moveDuration)
+        {
+            player2.transform.Translate(Vector3.right * 1.5f * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            yield return null; 
+        }
+    }
+    void changeCurrentPlayer(){
+        if(currentPlayer == player){
+            currentPlayer = player2;
+        }else{
+            //currentPlayer = player3;
+        }
     }
 
 }
