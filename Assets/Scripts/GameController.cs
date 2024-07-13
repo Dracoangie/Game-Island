@@ -33,6 +33,14 @@ public class GameController : MonoBehaviour
         
     }
 
+    public void secuenciaTrasCombate(){
+        CancelInvoke("startCombat");
+                Destroy(currentEnemy);
+                Debug.Log("Enviando a caminar");
+                Invoke("MovePlayer", 2.0f);
+                Invoke("SpawnNewEnemy", 4.0f);
+    }
+
     public void startCombat()
     {
         playerAnim.SetBool("IsAttacking", true);
@@ -43,10 +51,7 @@ public class GameController : MonoBehaviour
 
             if (currentEnemy.GetComponent<Stats>().health <= 0)
             {
-                CancelInvoke("startCombat");
-                Destroy(currentEnemy);
-                Invoke("MovePlayer", 2.0f);
-                Invoke("SpawnNewEnemy", 4.0f);
+                secuenciaTrasCombate();
             }
         }
         else 
@@ -65,9 +70,7 @@ public class GameController : MonoBehaviour
 
                 if (currentEnemy.GetComponent<Stats>().health <= 0)
                 {
-                    CancelInvoke("startCombat");
-                    Invoke("MovePlayer", 2.0f);
-                    Invoke("SpawnNewEnemy", 4.0f);
+                    secuenciaTrasCombate();
                 }
                 Invoke("setAttcBool", 0.3f);
                 break;
@@ -96,17 +99,19 @@ public class GameController : MonoBehaviour
 
     void MovePlayer()
     {
-        Rigidbody2D rb2d = currentPlayer.GetComponent<Rigidbody2D>();
+        Debug.Log("Moviendose");
+        Rigidbody2D rb2d = player.GetComponent<Rigidbody2D>();
        
         if (rb2d != null)
         {
-            
+            Debug.Log(rb2d.velocity);
             rb2d.velocity = new Vector2(2.0f, rb2d.velocity.y);
+            Debug.Log(rb2d.velocity);
         }
         else
         {
-            
-            currentPlayer.transform.Translate(Vector3.right * 2.0f * Time.deltaTime);
+            Debug.Log("Moviendo el transform");
+            player.transform.Translate(Vector3.right * 2.0f * Time.deltaTime);
 
         }
         Invoke("DestroyPlayer",2.0f);
