@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class GameController : MonoBehaviour
     public AudioManager audioManager;
 
     public GameObject PlayerBar;
+    public Image bar1 ;
     public GameObject EnemyBar;
 
     void Start()
@@ -55,11 +57,18 @@ public class GameController : MonoBehaviour
 
     public void startCombat()
     {
-         //audioManager.CambiarVolumen(1);
-        //audioManager.playEffect(_Attack);
+         audioManager.CambiarVolumen(1);
+        audioManager.playEffect(_Attack);
         playerAnim.SetBool("IsAttacking", true);
         player.GetComponent<Stats>().attack(currentEnemy.GetComponent<Stats>());
         Invoke("setAttcBool", 0.3f);
+        if(PlayerDefence>0){
+            bar1 = PlayerBar.GetComponent<Image>();
+            bar1.color=HexToColor("13FFD5");
+        }else{
+            bar1 = PlayerBar.GetComponent<Image>();
+            bar1.color = HexToColor("2AE505");
+        }
         if(PlayerDefence <= 0)
         {
             currentEnemy.GetComponent<Stats>().attack(player.GetComponent<Stats>());
@@ -81,7 +90,17 @@ public class GameController : MonoBehaviour
         
     }
 
+     Color HexToColor(string hex)
+    {
+        hex = hex.Replace("0x", ""); 
+        hex = hex.Replace("#", ""); 
 
+        byte r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+        byte g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+        byte b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+
+        return new Color32(r, g, b, 255);
+    }
 
 
     public void CardCombat(Card card)
@@ -100,6 +119,8 @@ public class GameController : MonoBehaviour
                 }
                 break;
             case "Defense":
+            bar1 = PlayerBar.GetComponent<Image>();
+            bar1.color=HexToColor("13FFD5");
             audioManager.CambiarVolumen(1);
                 audioManager.playEffect(_DefenceCard);
                 PlayerDefence ++;
