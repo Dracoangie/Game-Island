@@ -15,7 +15,9 @@ public class Card : ScriptableObject
 {
     public string cardName;
     public string description;
-    public Sprite cardArt;
+    public Sprite cardArt1;
+    public Sprite cardArt2;
+    public Sprite cardArt3;
     public int value;
     public CardType cardType;
 }

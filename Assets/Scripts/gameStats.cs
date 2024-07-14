@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class gameStats : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class gameStats : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "Card_Scene")
+            gameStats.Instance.CardsUpdate(null);
     }
 
     public void LifeUpdate(int Life)

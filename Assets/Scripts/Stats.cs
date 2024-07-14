@@ -10,13 +10,12 @@ public class Stats : MonoBehaviour
     public int damage;
     public Stats enemyStats;
     public Image healthBar;
-    public int maxHealth = 20;
+    int maxHealth ;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start(){
+        maxHealth = health;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -33,6 +32,7 @@ public class Stats : MonoBehaviour
 
     public void heal(int heal){
         health += heal;
+        if(health > maxHealth) health = maxHealth;
         UpdateHealthBar();
     }
 
@@ -40,7 +40,8 @@ public class Stats : MonoBehaviour
         this.health-=damage;
         UpdateHealthBar();
     }
-     public void UpdateHealthBar()
+
+    public void UpdateHealthBar()
     {
         if (healthBar != null)
         {

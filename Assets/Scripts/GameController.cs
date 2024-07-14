@@ -28,8 +28,6 @@ public class GameController : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         if (scene.name != "Card_Scene")
             player.GetComponent<Stats>().health = gameStats.Instance.getLife();
-        else
-            gameStats.Instance.CardsUpdate(null);
         
 
         currentEnemy = Enemy[0];
@@ -126,6 +124,7 @@ public class GameController : MonoBehaviour
         currentEnemy = Enemy[currentEnemyCount];
         currentEnemy.transform.position = new Vector3(0.5f, - 0.37f, -0.4f);
         currentEnemyCount++;
+        currentEnemy.GetComponent<Stats>().UpdateHealthBar();
         InvokeRepeating("startCombat", 2.0f, 2.0f);
     }
 
