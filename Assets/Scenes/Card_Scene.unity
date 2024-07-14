@@ -418,7 +418,7 @@ MonoBehaviour:
   _AttackCard: {fileID: 8300000, guid: c59de8aee7bfcb844b584ef888d1e13c, type: 3}
   _HealCard: {fileID: 8300000, guid: 24e7b63eff3123143aad1561a71076e8, type: 3}
   _DefenceCard: {fileID: 8300000, guid: 66df96edda71aed4eb7a4112ce320263, type: 3}
-  volumen: 0
+  volumen: 0.5
   Enemy:
   - {fileID: 895064064}
   - {fileID: 2070084211}
