@@ -26328,13 +26328,17 @@ PrefabInstance:
       propertyPath: enemyStats
       value: 
       objectReference: {fileID: 1027605321}
+    - target: {fileID: 4376678201792530500, guid: 367ef8c6d770b1349b5756dd13ac4dae, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3a45919f6a0363f4282935a45972cb73, type: 2}
     - target: {fileID: 7533607574879732264, guid: 367ef8c6d770b1349b5756dd13ac4dae, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.612
       objectReference: {fileID: 0}
     - target: {fileID: 7533607574879732264, guid: 367ef8c6d770b1349b5756dd13ac4dae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.231
+      value: -0.185
       objectReference: {fileID: 0}
     - target: {fileID: 7533607574879732264, guid: 367ef8c6d770b1349b5756dd13ac4dae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -26372,6 +26376,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Personaje 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7896345478961247880, guid: 367ef8c6d770b1349b5756dd13ac4dae, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c14c404db5b478a4085f4638cdeef865, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
