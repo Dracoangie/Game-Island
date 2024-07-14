@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public AudioClip _Attack;
+    public AudioClip _AttackCard;
+    public AudioClip _HealCard;
+    public AudioClip _DefenceCard;
+
     public GameObject[] Enemy;
     GameObject currentEnemy;
     int currentEnemyCount = 1;
@@ -20,7 +25,7 @@ public class GameController : MonoBehaviour
     public CardManager cardAdder;
     public GameObject cardContainer;
 
-
+    public AudioManager audioManager;
 
     void Start()
     {        
@@ -43,6 +48,8 @@ public class GameController : MonoBehaviour
 
     public void startCombat()
     {
+         audioManager.CambiarVolumen(1);
+        audioManager.playEffect(_Attack);
         playerAnim.SetBool("IsAttacking", true);
         player.GetComponent<Stats>().attack(currentEnemy.GetComponent<Stats>());
         Invoke("setAttcBool", 0.3f);
@@ -67,10 +74,16 @@ public class GameController : MonoBehaviour
         
     }
 
+
+
+
     public void CardCombat(Card card)
     {
+        
         switch(card.cardType.ToString()){
             case "Attack":
+                audioManager.CambiarVolumen(0.3f);
+                audioManager.playEffect(_AttackCard);
                 playerAnim.SetBool("IsAttacking", true);
                 currentEnemy.GetComponent<Stats>().recieveDamage(card.value);
                 Invoke("setAttcBool", 0.3f);
@@ -80,9 +93,13 @@ public class GameController : MonoBehaviour
                 }
                 break;
             case "Defense":
+            audioManager.CambiarVolumen(1);
+                audioManager.playEffect(_DefenceCard);
                 PlayerDefence ++;
                 break;
             case "Heal":
+            audioManager.CambiarVolumen(1);
+                audioManager.playEffect(_HealCard);
                 playerAnim.SetBool("isHealing", true);
                 player.GetComponent<Stats>().heal(card.value);
                 Invoke("setHealBool", 0.3f);

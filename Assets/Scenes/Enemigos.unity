@@ -263,6 +263,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d370c592d25d224395a3dcdbca9084b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Attack: {fileID: 0}
+  _AttackCard: {fileID: 0}
+  _HealCard: {fileID: 0}
+  _DefenceCard: {fileID: 0}
+  _useCard: {fileID: 0}
   Enemy: []
   player: {fileID: 0}
   gamecamera: {fileID: 1375541452}
