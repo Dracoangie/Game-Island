@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Card_Scene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Second_Scene.unity
+    guid: f598d996990b83542a8f9e9435a75c17
+  - enabled: 1
+    path: Assets/Scenes/SalaDelTrono.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

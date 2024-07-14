@@ -14905,7 +14905,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.06666667, b: 0.08235294, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -14929,7 +14929,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -14954,13 +14954,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13140734, y: 0.6947893, z: -0.13140734, w: 0.6947893}
-  m_LocalPosition: {x: 0.18, y: 3.68, z: -0.16}
+  m_LocalRotation: {x: -0.0105880955, y: 0.70766205, z: 0.010610354, w: 0.70639205}
+  m_LocalPosition: {x: -2.784474, y: 0.75037044, z: 0.30896384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 21.42, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 23.605, y: 90, z: 0}
 --- !u!1 &529215552
 GameObject:
   m_ObjectHideFlags: 0
@@ -29626,7 +29626,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: NaN, z: 0, w: 1451.4629}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 1.15e-43, z: 3.852e-42, w: 714432}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
