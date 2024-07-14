@@ -18,11 +18,20 @@ public class GameController : MonoBehaviour
     Animator cameraAnim;
 
     public CardManager cardAdder;
+    public GameObject cardContainer;
 
 
 
     void Start()
-    {
+    {        
+        
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name != "Card_Scene")
+            player.GetComponent<Stats>().health = gameStats.Instance.getLife();
+        else
+            gameStats.Instance.CardsUpdate(null);
+        
+
         currentEnemy = Enemy[0];
         Invoke("gameStart", 0.5f);
         playerAnim = player.GetComponent<Animator>();
@@ -43,7 +52,13 @@ public class GameController : MonoBehaviour
         {
             currentEnemy.GetComponent<Stats>().attack(player.GetComponent<Stats>());
 
-            if (currentEnemy.GetComponent<Stats>().health <= 0)
+            if (player.GetComponent<Stats>().health <= 0)
+            {
+                CancelInvoke("startCombat");
+                playerAnim.SetBool("isDead", true);
+                Invoke("muerte", 3.0f);
+            }
+            else  if(currentEnemy.GetComponent<Stats>().health <= 0)
             {
                 secuenciaTrasCombate();
             }
@@ -61,7 +76,6 @@ public class GameController : MonoBehaviour
                 playerAnim.SetBool("IsAttacking", true);
                 currentEnemy.GetComponent<Stats>().recieveDamage(card.value);
                 Invoke("setAttcBool", 0.3f);
-
                 if (currentEnemy.GetComponent<Stats>().health <= 0)
                 {
                     secuenciaTrasCombate();
@@ -91,12 +105,13 @@ public class GameController : MonoBehaviour
     }
 
     void secuenciaTrasCombate(){
-
+        CancelInvoke("startCombat");
         if(currentEnemyCount >= Enemy.Length)
         {
             Destroy(currentEnemy);
             playerAnim.SetBool("endScene", true);
             cameraAnim.SetBool("endScene", true);
+            setGameStats();
             Invoke("cambioescene", 3.0f);
         }
         else
@@ -111,6 +126,7 @@ public class GameController : MonoBehaviour
         currentEnemy = Enemy[currentEnemyCount];
         currentEnemy.transform.position = new Vector3(0.5f, - 0.37f, -0.4f);
         currentEnemyCount++;
+        InvokeRepeating("startCombat", 2.0f, 2.0f);
     }
 
     void cambioescene()
@@ -125,6 +141,30 @@ public class GameController : MonoBehaviour
         {
             SceneManager.LoadScene("SalaDelTrono");
         }
+    }
+
+    void setGameStats()
+    {
+        int counter = 0;
+        List<Card> cards = new List<Card>();
+        gameStats.Instance.LifeUpdate(player.GetComponent<Stats>().health);
+
+        foreach (Transform child in cardContainer.transform)
+        {
+            CardCode component = child.GetComponent<CardCode>();
+            if (component != null)
+            {
+                cards.Add(component.card);
+                counter++;
+            }
+        }
+
+        gameStats.Instance.CardsUpdate(cards.ToArray());
+    }
+
+    void muerte()
+    {
+        SceneManager.LoadScene("Card_Scene");
     }
 
 }

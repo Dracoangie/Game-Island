@@ -308,6 +308,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &139501074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 139501076}
+  - component: {fileID: 139501075}
+  m_Layer: 0
+  m_Name: GameStats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &139501075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139501074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fcf145ee04480c4484ba68caeffbf64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Playerlife: 0
+  cards: []
+--- !u!4 &139501076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139501074}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.14452904, y: 0.5932706, z: -0.3308548}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &184452201
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,11 +416,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy:
   - {fileID: 895064064}
-  - {fileID: 2070084211}
-  - {fileID: 2016298238}
   player: {fileID: 1170423441}
   gamecamera: {fileID: 1118911143}
   cardAdder: {fileID: 103650458}
+  cardContainer: {fileID: 376381276}
 --- !u!4 &201294667
 Transform:
   m_ObjectHideFlags: 0
@@ -667,11 +712,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5857940087064031301, guid: a5a35cc9a324bda4686ab0dac2e3dfc1, type: 3}
       propertyPath: damage
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5857940087064031301, guid: a5a35cc9a324bda4686ab0dac2e3dfc1, type: 3}
       propertyPath: health
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5857940087064031301, guid: a5a35cc9a324bda4686ab0dac2e3dfc1, type: 3}
       propertyPath: enemyStats
@@ -926,6 +971,10 @@ PrefabInstance:
     - target: {fileID: 1768715881673792565, guid: 1489058889bb64d4fa2a331a3fc81af6, type: 3}
       propertyPath: m_Name
       value: Personaje
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822076406677258625, guid: 1489058889bb64d4fa2a331a3fc81af6, type: 3}
+      propertyPath: health
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1822076406677258625, guid: 1489058889bb64d4fa2a331a3fc81af6, type: 3}
       propertyPath: enemyStats
@@ -1438,11 +1487,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5a35cc9a324bda4686ab0dac2e3dfc1, type: 3}
---- !u!1 &2016298238 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8491554002987453540, guid: a5a35cc9a324bda4686ab0dac2e3dfc1, type: 3}
-  m_PrefabInstance: {fileID: 2016298237}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2070084210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1512,11 +1556,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5a35cc9a324bda4686ab0dac2e3dfc1, type: 3}
---- !u!1 &2070084211 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8491554002987453540, guid: a5a35cc9a324bda4686ab0dac2e3dfc1, type: 3}
-  m_PrefabInstance: {fileID: 2070084210}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1537,3 +1576,4 @@ SceneRoots:
   - {fileID: 41528324}
   - {fileID: 103650459}
   - {fileID: 1283097496}
+  - {fileID: 139501076}
