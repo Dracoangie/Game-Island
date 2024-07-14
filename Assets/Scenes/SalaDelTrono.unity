@@ -10475,6 +10475,8 @@ MonoBehaviour:
   cardAdder: {fileID: 1002305715}
   cardContainer: {fileID: 1810855880}
   audioManager: {fileID: 0}
+  PlayerBar: {fileID: 1654732364}
+  EnemyBar: {fileID: 427335373}
 --- !u!4 &303599577
 Transform:
   m_ObjectHideFlags: 0
@@ -20875,7 +20877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1610755100972220925, guid: a5a35cc9a324bda4686ab0dac2e3dfc1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.44
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 1610755100972220925, guid: a5a35cc9a324bda4686ab0dac2e3dfc1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20981,7 +20983,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 3, y: 0}
-  m_SizeDelta: {x: 965.711, y: 558}
+  m_SizeDelta: {x: 965.711, y: 750}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1055641573
 MonoBehaviour:
@@ -20996,7 +20998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.18490559, g: 0.18490559, b: 0.18490559, a: 0.27450982}
+  m_Color: {r: 0.18490559, g: 0.18490559, b: 0.18490559, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

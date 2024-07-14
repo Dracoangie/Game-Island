@@ -28,22 +28,28 @@ public class GameController : MonoBehaviour
 
     public AudioManager audioManager;
 
+    public GameObject PlayerBar;
+    public GameObject EnemyBar;
+
     void Start()
     {        
-        
+        PlayerBar.SetActive(false);
+        EnemyBar.SetActive(false);
         Scene scene = SceneManager.GetActiveScene();
         if (scene.name != "Card_Scene")
             player.GetComponent<Stats>().health = gameStats.Instance.getLife();
         
 
         currentEnemy = Enemy[0];
-        Invoke("gameStart", 0.5f);
+        Invoke("gameStart", 0.8f);
         playerAnim = player.GetComponent<Animator>();
         cameraAnim = gamecamera.GetComponent<Animator>();
     }
 
     void gameStart()
     {
+        PlayerBar.SetActive(true);
+        EnemyBar.SetActive(true);
         InvokeRepeating("startCombat", 2.0f, 2.0f);
     }
 
@@ -128,6 +134,8 @@ public class GameController : MonoBehaviour
             playerAnim.SetBool("endScene", true);
             cameraAnim.SetBool("endScene", true);
             setGameStats();
+            PlayerBar.SetActive(false);
+            EnemyBar.SetActive(false);
             Invoke("cambioescene", 3.0f);
         }
         else
