@@ -141,6 +141,10 @@ public class GameController : MonoBehaviour
         {
             SceneManager.LoadScene("SalaDelTrono");
         }
+        else if (scene.name == "SalaDelTrono")
+        {
+            SceneManager.LoadScene("Card_Scene");
+        }
     }
 
     void setGameStats()
