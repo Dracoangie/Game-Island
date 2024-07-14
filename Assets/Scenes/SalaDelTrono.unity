@@ -5247,6 +5247,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &137808103 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8491554002987453540, guid: a5a35cc9a324bda4686ab0dac2e3dfc1, type: 3}
+  m_PrefabInstance: {fileID: 315172306}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &149232190
 GameObject:
   m_ObjectHideFlags: 0
@@ -10559,12 +10564,15 @@ MonoBehaviour:
   volumen: 1
   Enemy:
   - {fileID: 1027605322}
+  - {fileID: 137808103}
+  - {fileID: 1760838106}
   player: {fileID: 1456966732}
   gamecamera: {fileID: 519420028}
   cardAdder: {fileID: 1002305715}
   cardContainer: {fileID: 1810855880}
   audioManager: {fileID: 1841990366}
   PlayerBar: {fileID: 1654732364}
+  bar1: {fileID: 0}
   EnemyBar: {fileID: 427335373}
 --- !u!4 &303599577
 Transform:
@@ -26908,6 +26916,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4283311113454432, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
   m_PrefabInstance: {fileID: 1726732517}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1760838106 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8491554002987453540, guid: a5a35cc9a324bda4686ab0dac2e3dfc1, type: 3}
+  m_PrefabInstance: {fileID: 204330053}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1810855880
 GameObject:
