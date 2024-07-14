@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 public class CardCode : MonoBehaviour
 {
     public Card card;
-    public Text cardName;
-    public Text action;
     public Image cardArt;
 
     public GameController gameController;
@@ -34,23 +32,6 @@ public class CardCode : MonoBehaviour
 
         }else
             cardArt.sprite = card.cardArt3;
-
-
-        cardName.text = card.cardName;
-
-        switch(card.cardType.ToString()){
-            case "Attack":
-                action.text = card.value.ToString();
-                break;
-            case "Defense":
-                action.text = "";
-                break;
-            case "Heal":
-                action.text = card.value.ToString();
-                break;
-            default:
-                break;
-        }
     }
 
     public void Action()

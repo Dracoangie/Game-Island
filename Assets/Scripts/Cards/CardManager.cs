@@ -34,7 +34,8 @@ public class CardManager : MonoBehaviour
                 newCard.transform.SetParent(cardContainer, false);
             }
         }
-
+        if(gameStats.Instance.getCards() != null){
+            
         for(int i = 0; i < gameStats.Instance.getCards().Length ; i++)
         {
             GameObject newCard = Instantiate(cardPrefab, cardContainer);
@@ -48,6 +49,7 @@ public class CardManager : MonoBehaviour
             {
                 newCard.transform.SetParent(cardContainer, false);
             }
+        }
         }
     }
 }
