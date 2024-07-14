@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public AudioClip _AttackCard;
     public AudioClip _HealCard;
     public AudioClip _DefenceCard;
+    public float volumen;
 
     public GameObject[] Enemy;
     GameObject currentEnemy;
@@ -82,7 +83,7 @@ public class GameController : MonoBehaviour
         
         switch(card.cardType.ToString()){
             case "Attack":
-                audioManager.CambiarVolumen(0.3f);
+                audioManager.CambiarVolumen(volumen);
                 audioManager.playEffect(_AttackCard);
                 playerAnim.SetBool("IsAttacking", true);
                 currentEnemy.GetComponent<Stats>().recieveDamage(card.value);
