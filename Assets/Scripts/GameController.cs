@@ -49,8 +49,8 @@ public class GameController : MonoBehaviour
 
     public void startCombat()
     {
-         audioManager.CambiarVolumen(1);
-        audioManager.playEffect(_Attack);
+         //audioManager.CambiarVolumen(1);
+        //audioManager.playEffect(_Attack);
         playerAnim.SetBool("IsAttacking", true);
         player.GetComponent<Stats>().attack(currentEnemy.GetComponent<Stats>());
         Invoke("setAttcBool", 0.3f);
@@ -83,8 +83,8 @@ public class GameController : MonoBehaviour
         
         switch(card.cardType.ToString()){
             case "Attack":
-                audioManager.CambiarVolumen(volumen);
-                audioManager.playEffect(_AttackCard);
+                //audioManager.CambiarVolumen(volumen);
+                //audioManager.playEffect(_AttackCard);
                 playerAnim.SetBool("IsAttacking", true);
                 currentEnemy.GetComponent<Stats>().recieveDamage(card.value);
                 Invoke("setAttcBool", 0.3f);
@@ -94,13 +94,13 @@ public class GameController : MonoBehaviour
                 }
                 break;
             case "Defense":
-            audioManager.CambiarVolumen(1);
-                audioManager.playEffect(_DefenceCard);
+            //audioManager.CambiarVolumen(1);
+                //audioManager.playEffect(_DefenceCard);
                 PlayerDefence ++;
                 break;
             case "Heal":
-            audioManager.CambiarVolumen(1);
-                audioManager.playEffect(_HealCard);
+            //audioManager.CambiarVolumen(1);
+                //audioManager.playEffect(_HealCard);
                 playerAnim.SetBool("isHealing", true);
                 player.GetComponent<Stats>().heal(card.value);
                 Invoke("setHealBool", 0.3f);
