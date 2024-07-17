@@ -33,8 +33,19 @@ public class GameController : MonoBehaviour
     public Image bar1 ;
     public GameObject EnemyBar;
 
+    float timer;
+
+    void Update(){
+        float deltaTime= Time.deltaTime;
+    }
+
     void Start()
     {        
+        for(int i = 1; i < Enemy.Length; i++)
+        {
+            Enemy[i].SetActive(false);
+        }
+
         PlayerBar.SetActive(false);
         EnemyBar.SetActive(false);
         Scene scene = SceneManager.GetActiveScene();
@@ -43,9 +54,11 @@ public class GameController : MonoBehaviour
         
 
         currentEnemy = Enemy[0];
+        enemyAnim = currentEnemy.GetComponent<Animator>();
         Invoke("gameStart", 0.8f);
         playerAnim = player.GetComponent<Animator>();
         cameraAnim = gamecamera.GetComponent<Animator>();
+        bar1 = PlayerBar.GetComponent<Image>();
     }
 
     void gameStart()
@@ -57,18 +70,13 @@ public class GameController : MonoBehaviour
 
     public void startCombat()
     {
-         audioManager.CambiarVolumen(1);
+        audioManager.CambiarVolumen(1);
         audioManager.playEffect(_Attack);
         playerAnim.SetBool("IsAttacking", true);
+        enemyAnim.SetBool("isAttacking", true);
         player.GetComponent<Stats>().attack(currentEnemy.GetComponent<Stats>());
         Invoke("setAttcBool", 0.3f);
-        if(PlayerDefence>0){
-            bar1 = PlayerBar.GetComponent<Image>();
-            bar1.color=HexToColor("13FFD5");
-        }else{
-            bar1 = PlayerBar.GetComponent<Image>();
-            bar1.color = HexToColor("2AE505");
-        }
+
         if(PlayerDefence <= 0)
         {
             currentEnemy.GetComponent<Stats>().attack(player.GetComponent<Stats>());
@@ -86,22 +94,16 @@ public class GameController : MonoBehaviour
         }
         else 
             PlayerDefence --;
+        
+        
+        if(PlayerDefence>0){
+            bar1.color = new Color32(42,229,250,255);
+        }else{
+            bar1.color = new Color32(42,229,5,255);
+        }
 
         
     }
-
-     Color HexToColor(string hex)
-    {
-        hex = hex.Replace("0x", ""); 
-        hex = hex.Replace("#", ""); 
-
-        byte r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-        byte g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-        byte b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
-
-        return new Color32(r, g, b, 255);
-    }
-
 
     public void CardCombat(Card card)
     {
@@ -119,8 +121,7 @@ public class GameController : MonoBehaviour
                 }
                 break;
             case "Defense":
-            bar1 = PlayerBar.GetComponent<Image>();
-            bar1.color=HexToColor("13FFD5");
+            bar1.color = new Color32(42,229,250,255);
             audioManager.CambiarVolumen(1);
                 audioManager.playEffect(_DefenceCard);
                 PlayerDefence ++;
@@ -140,6 +141,7 @@ public class GameController : MonoBehaviour
     void setAttcBool()
     {
         playerAnim.SetBool("IsAttacking", false);
+        enemyAnim.SetBool("isAttacking", false);
     }
 
     void setHealBool()
@@ -149,6 +151,12 @@ public class GameController : MonoBehaviour
 
     void secuenciaTrasCombate(){
         CancelInvoke("startCombat");
+        enemyAnim.SetBool("isDead", true);
+        Invoke("setHealBool", 0.3f);
+        Invoke("nextEnemy", 0.5f);
+    }
+    void nextEnemy()
+    {
         if(currentEnemyCount >= Enemy.Length)
         {
             Destroy(currentEnemy);
@@ -162,13 +170,16 @@ public class GameController : MonoBehaviour
         else
         {
             Destroy(currentEnemy);
-            Invoke("newEnemy", 0.3f);
+            Invoke("newEnemy", 1.0f);
         }
+    
     }
 
     void newEnemy()
     {
         currentEnemy = Enemy[currentEnemyCount];
+        currentEnemy.SetActive(true);
+        enemyAnim = currentEnemy.GetComponent<Animator>();
         currentEnemy.transform.position = new Vector3(0.5f, - 0.37f, -0.4f);
         currentEnemyCount++;
         currentEnemy.GetComponent<Stats>().UpdateHealthBar();

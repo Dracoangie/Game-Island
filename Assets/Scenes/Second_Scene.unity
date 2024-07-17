@@ -166,6 +166,7 @@ MonoBehaviour:
   cardContainer: {fileID: 1571850724}
   audioManager: {fileID: 606964610}
   PlayerBar: {fileID: 697741864}
+  bar1: {fileID: 0}
   EnemyBar: {fileID: 1520301967}
 --- !u!4 &47213268
 Transform:
@@ -1564,7 +1565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5857940087064031301, guid: a5a35cc9a324bda4686ab0dac2e3dfc1, type: 3}
       propertyPath: health
-      value: 11
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5857940087064031301, guid: a5a35cc9a324bda4686ab0dac2e3dfc1, type: 3}
       propertyPath: healthBar

@@ -22,7 +22,6 @@ public class AudioManager : MonoBehaviour
     }
     
    public void playEffect(AudioClip efecto){
-       Debug.Log("Reproduciendo "+efecto);
        Effects.clip = efecto;
         Effects.Play();
     }
